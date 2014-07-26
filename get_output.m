@@ -1,4 +1,4 @@
-function o = get_output(siso_cmac, e)
+function [o, d] = get_output(siso_cmac, e)
 	d = get_detectors(siso_cmac, e);
 	o = d' * siso_cmac.weights;
 end
