@@ -2,8 +2,8 @@ function siso_cmac = train(input, desired, iterations)
 	siso_cmac = create_siso_cmac(
 		e_min = 0,
 		e_max = 2*pi,
-		q = 0.1,
-		nl = 10 
+		q = 0.01,
+		nl = 20 
 	);
 	beta = 1;
 	for j = 1: iterations
