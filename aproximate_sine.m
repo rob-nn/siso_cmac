@@ -4,7 +4,17 @@ figure();
 x = 0:0.1:2*pi;
 y = sin(x);
 plot(x, y);
-siso_cmac = train(x, y, 20);
+
+
+siso_cmac = create_siso_cmac(
+	e_min = 0,
+	e_max = 2*pi,
+	q = 0.01,
+	nl = 30,
+	beta = 0.7,
+	iterations = 20 
+);
+siso_cmac = train(siso_cmac, x, y);
 
 x = 0:0.01:2*pi;
 y = sin(x);

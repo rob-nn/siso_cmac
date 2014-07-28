@@ -15,7 +15,9 @@ end;
 %!		e_min = 0,
 %!		e_max = 11,
 %!		q = 1,
-%!		nl = 3);
+%!		nl = 3,
+%!		alpha = 1,
+%!		iterations =1);
 %!test
 %!	assert(find(get_detectors(siso_cmac, 0)), [1 5 10]');
 %!test

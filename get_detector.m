@@ -9,7 +9,9 @@ end
 %!		e_min = 0,
 %!		e_max = 11,
 %!		q = 1,
-%!		nl = 3);
+%!		nl = 3,
+%!		alpha = 1,
+%!		iterations = 1);
 %!test
 %!	assert(get_detector(siso_cmac, 0, 0), 0);
 %!test

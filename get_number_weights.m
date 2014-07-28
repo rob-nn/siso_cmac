@@ -12,7 +12,7 @@ end;
 %!		e_min = 0,
 %!		e_max = 11,
 %!		q = 1,
-%!		nl = 3);
+%!		nl = 3, alpha =1, iterations =1);
 %!test
 %!	assert(get_number_weights(siso_cmac), 14);
 %!test
@@ -20,5 +20,5 @@ end;
 %!		e_min = -5,
 %!		e_max = 6,
 %!		q = 1,
-%!		nl = 3);
+%!		nl = 3, alpha=1, iterations=1);
 %!	assert(get_number_weights(siso_cmac), 14);
