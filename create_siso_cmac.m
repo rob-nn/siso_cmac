@@ -8,6 +8,9 @@ function siso_cmac = create_siso_cmac(e_min, e_max, q, nl, beta, iterations)
 	siso_cmac.beta = beta;
 	siso_cmac.iterations = iterations;
 	siso_cmac.weights = zeros(get_number_weights(siso_cmac), 1);
+	
+	siso_cmac.e_min_n = e_min;
+	siso_cmac.e_max_n = e_max;
 
 end
 

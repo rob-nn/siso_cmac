@@ -6,7 +6,7 @@ function d = get_detectors(siso_cmac, e)
 		first = get_detector(siso_cmac, siso_cmac.e_min, layer);
 		last = get_detector(siso_cmac, siso_cmac.e_max, layer);
 		d(n + di - first + 1) = 1;
-		n = n + last -first + 1;
+		n = n + last - first + 1;
 	end
 end;
 
