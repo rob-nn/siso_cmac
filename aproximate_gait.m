@@ -15,8 +15,7 @@ for i = 1:5
 end;
 
 x = y =[];
-#for i = floor(linspace(1, 746, 224))
-for i = 1:746
+for i = floor(linspace(1, 746, 224))
 	x = [x angles(3).angle_left(i)];
 	y = [y angles(3).angle_right(i)];
 end;
@@ -36,17 +35,19 @@ siso_cmac.weights = zeros(get_number_weights(siso_cmac), 1);
 
 
 siso_cmac = train(siso_cmac, x, y);
-for i = 3:3
-	o = [];
-	for j = [1: size(x, 2)]
-		o = [o, get_output( siso_cmac, x(j) )];
-	end
-
-	figure();
-	plot(y, 'color', 'b');
-	hold on;
-	plot(o, 'color', 'r');
-	legend('Joelho esquerdo', strcat('Aproximacao: ', mat2str(i)));
+o = [];
+for j = [1: size(x, 2)]
+	o = [o, get_output( siso_cmac, x(j) )];
 end
+
+h1= figure();
+plot(y, 'color', 'r');
+hold on;
+plot(o, 'color', 'b');
+legend('Joelho esquerdo', 'Aproximacao ');
+xlabel('t');
+ylabel('Angulos normalizados');
+print(h1, 'fig4.png', '-dpng');
+
 
 plot_walk(siso_cmac, angles);

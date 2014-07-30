@@ -1,6 +1,6 @@
 clear all; clc; 
 
-figure();
+h1 = figure();
 x = -5:0.1:5;
 y = 1./(1.+exp(-x));
 plot(x, y);
@@ -25,3 +25,9 @@ end
 
 hold on;
 plot(x, o, 'color', 'r');
+
+
+legend('Função Sigmoide', 'Aproximacao');
+print(h1, 'fig6.png', '-dpng');
+
+
