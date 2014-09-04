@@ -2,8 +2,8 @@ clear all; clc;
 siso_cmac = create_siso_cmac(
 	e_min = 2.5,
 	e_max = 3.05,
-	q = 0.00001,
-	nl = 70,
+	q = 0.00001, %0.00001,
+	nl = 500,
 	beta = 1,
 	iterations =10
 );
@@ -14,12 +14,23 @@ for i = 1:5
 	angles(i).angle_left = normalize(siso_cmac, angles(i).angle_left);
 end;
 
-x = y =[];
-#for i = floor(linspace(1, 746, 224))
-for i = 1:746
+frame_rate = 315; % frames per second
+x = y = t = [];
+tprime = [0:(size(angles(3).angle_left, 1) - 1)] * (1/frame_rate);
+training_set_indexes = [];
+for i = floor(linspace(1, 746, 373)) % 50% of data from walk 3 to train net
 	x = [x angles(3).angle_left(i)];
 	y = [y angles(3).angle_right(i)];
+	t = [t tprime(i)];
+	training_set_indexes = [training_set_indexes i];
 end;
+
+testing_set = [];
+for i = 1:size(angles(3).angle_left,1)
+	if !any(i == training_set_indexes)
+		testing_set = [testing_set; [tprime(i) angles(3).angle_left(i) angles(3).angle_right(i)]];
+	end
+end
 
 siso_cmac.e_min = 0;
 siso_cmac.e_max = 1;
@@ -31,18 +42,25 @@ siso_cmac.weights = zeros(get_number_weights(siso_cmac), 1);
 %plot(y, 'color', 'r');
 %legend('Joelho esquerdo', 'Joelho Direito');
 
+
 siso_cmac = train(siso_cmac, x, y);
-for i = 3:3
-	o = [];
-	for j = [1: size(x, 2)]
-		o = [o, get_output( siso_cmac, x(j) )];
-	end
+training_set = x;
+desired = y;
+save ('siso_cmac.mat', 'siso_cmac', 't', 'training_set', 'desired', 'testing_set');
+%for i = 3:3
+%	o = [];
+%	for j = [1: size(x, 2)]
+%		o = [o, get_output( siso_cmac, x(j) )];
+%	end
 
-	figure();
-	plot(y, 'color', 'b');
-	hold on;
-	plot(o, 'color', 'r');
-	legend('Joelho esquerdo', strcat('Aproximacao: ', mat2str(i)));
-end
+%	figure();
+%	plot(y, 'color', 'b');
+%	hold on;
+%	plot(o, 'color', 'r');
+%	legend('Joelho esquerdo', strcat('Aproximacao: ', mat2str(i)));
+%end
 
-plot_walk(siso_cmac, angles);
+%plot_walk(siso_cmac, angles);
+
+
+'***** SCRIPT END *****'
