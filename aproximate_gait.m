@@ -2,8 +2,8 @@ clear all; clc;
 siso_cmac = create_siso_cmac(
 	e_min = 2.5,
 	e_max = 3.05,
-	q = 0.00001, %0.00001,
-	nl = 500,
+	q = 0.000001,
+	nl = 1000,
 	beta = 1,
 	iterations =10
 );
