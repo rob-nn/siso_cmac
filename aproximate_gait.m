@@ -40,4 +40,4 @@ siso_cmac = train(siso_cmac, x, y);
 training_set = x;
 desired = y;
 save ('siso_cmac.mat', 'siso_cmac', 't', 'training_set', 'desired', 'testing_set');
-
+'****************** SCRIPT END ***********************'
